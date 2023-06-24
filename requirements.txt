@@ -1,0 +1,9 @@
+Flask
+scikit-learn
+pandas
+numpy
+matplotlib
+category_encoders
+seaborn
+scipy
+statsmodels
