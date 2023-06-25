@@ -28,4 +28,6 @@
    ```
    pip install -r requirements.txt
   ```
-7. 
+7. Make sure the serialized trained model (a pickle file) and all the datasets are in the same folder
+
+8. Create a new file named app.py and copy the code from the repository
