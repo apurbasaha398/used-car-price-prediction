@@ -1,0 +1,394 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <script>
+            function validateInput() {
+              var input = document.getElementById('modelName');
+              var lowercaseInput = input.value.toLowerCase();
+        
+              if (input.value !== lowercaseInput) {
+                input.value = lowercaseInput;
+                alert("Please enter the data in lowercase.");
+              }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="login">   
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <h1>
+                <legend>US Used Car Price Prediction</legend>
+            </h1>
+            <div class="mb-3">
+                <label class="form-label">Body Type</label>
+                <select class="form-control" name="body_type" placeholder="Select the body type of the car" required>
+                    <option class="placeholder" selected disabled value="">Select the body type of the car</option>
+                    <option value="suv">
+                        SUV
+                    </option>
+                    <option value="sedan">
+                        Sedan
+                    </option>
+                    <option value="pickup truck">
+                        Pickup Truck
+                    </option>
+                    <option value="hatchback">
+                        Hatchback
+                    </option>
+                    <option value="coupe">
+                        Coupe
+                    </option>
+                    <option value="convertible">
+                        Convertible
+                    </option>
+                    <option value="van">
+                        Van
+                    </option>
+                    <option value="wagon">
+                        Wagon
+                    </option>
+                    </option value="minivan">
+                        MiniVan
+                    </option>
+                    </option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Exterior Color</label>
+                <select class="form-control" name="exterior_color_grouped" placeholder="Select the exterior color" required>
+                    <option class="placeholder" selected disabled value="">Select the exterior color</option>
+                    <option value="black">
+                        Black
+                    </option>
+                    <option value="white">
+                        White
+                    </option>
+                    <option value="silver">
+                        Silver
+                    </option>
+                    <option value="gray">
+                        Gray
+                    </option>
+                    <option value="blue">
+                        Blue
+                    </option>
+                    <option value="red">
+                        Red
+                    </option>
+                    <option value="other">
+                        Other
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Interior Color</label>
+                <select class="form-control" name="interior_color_grouped"
+                    placeholder="Select the interior color" required>
+                    <option class="placeholder" selected disabled value="">Select the interior color</option>
+                    <option value="black">
+                        Black
+                    </option>
+                    <option value="gray">
+                        Gray
+                    </option>
+                    <option value="white">
+                        White
+                    </option>
+                    <option value="brown">
+                        Brown
+                    </option>
+                    <option value="other">
+                        Other
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fuel Type</label>
+                <select class="form-control" name="fuel_type" placeholder="Select the type of fuel" required>
+                    <option class="placeholder" selected disabled value="">Select the type of fuel</option>
+                    <option value="gasoline">
+                        Gasoline
+                    </option>
+                    <option value="flex fuel vehicle">
+                        Flex Fuel Vehicle
+                    </option>
+                    <option value="hybrid">
+                        Hybrid
+                    </option>
+                    <option value="diesel">
+                        Diesel
+                    </option>
+                    <option value="biodiesel">
+                        Biodiesel
+                    </option>
+                    <option value="electric">
+                        Electric
+                    </option>
+                    <option value="compressed natural gas">
+                        Compressed Natural Gas
+                    </option>
+                    <option value="propane">
+                        Propane
+                    </option>
+                    <option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Make Name</label>
+                <select class="form-control" name="make_name" placeholder="Select the brand of the car" required>
+                    required>
+                    <option class="placeholder" selected disabled value="">Select the brand of the car</option>
+                    <option value="ford">
+                        Ford
+                    </option>
+                    <option value="chevrolet">
+                        Chevrolet
+                    </option>
+                    <option value="honda">
+                        Honda
+                    </option>
+                    <option value="toyota">
+                        Toyota
+                    </option>
+                    <option value="nissan">
+                        Nissan
+                    </option>
+                    <option value="jeep">
+                        Jeep
+                    </option>
+                    <option value="dodge">
+                        Dodge
+                    </option>
+                    <option value="gmc">
+                        GMC
+                    </option>
+                    <option value="ram">
+                        RAM
+                    </option>
+                    <option value="bmw">
+                        BMW
+                    </option>
+                    <option value="hyundai">
+                        Hyundai
+                    </option>
+                    <option value="subaru">
+                        Subaru
+                    </option>
+                    <option value="mercedes-benz">
+                        Mercedes-Benz
+                    </option>
+                    <option value="volkswagen">
+                        Volkswagen
+                    </option>
+                    <option value="kia">
+                        Kia
+                    </option>
+                    <option value="lexus">
+                        Lexus
+                    </option>
+                    <option value="mazda">
+                        Mazda
+                    </option>
+                    <option value="buick">
+                        Buick
+                    </option>
+                    <option value="cadillac">
+                        Cadillac
+                    </option>
+                    <option value="audi">
+                        Audi
+                    </option>
+                    <option value="other">
+                        Other
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Mileage</label>
+                <select class="form-control" name="mileage"
+                    placeholder="Select the group where the mileage of your car belongs" required>
+                    <option class="placeholder" selected disabled value="">Select the group where the mileage of your car belongs</option>
+                    <option value="0-50k">
+                        0-50k
+                    </option>
+                    <option value="50-100k">
+                        50-100k
+                    </option>
+                    <option value="100-150k">
+                        100-150k
+                    </option>
+                    <option value="150-200k">
+                        150-200k
+                    </option>
+                    <option value=">200k">
+                        >200k
+                    </option>
+                    <option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Seller Rating</label>
+                <select class="form-control" name="seller_rating"
+                    placeholder="Select the seller rating" required>
+                    <option class="placeholder" selected disabled value="">Select the seller rating</option>
+                    <option value="1 star">
+                        1 star
+                    </option>
+                    <option value="2 star">
+                        2 star
+                    </option>
+                    <option value="3 star">
+                        3 star
+                    </option>
+                    <option value="4 star">
+                        4 star
+                    </option>
+                    <option value="5 star">
+                        5 star
+                    </option>
+                    <option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Transmission Type</label>
+                <select class="form-control" name="transmission"
+                    placeholder="Select the transmission type for your car" required>
+                    <option class="placeholder" selected disabled value="">Select the transmission type for your car</option>
+                    <option value="automatic">
+                        Automatic
+                    </option>
+                    <option value="manual">
+                        Manual
+                    </option>
+                    <option value="cvt">
+                        CVT
+                    </option>
+                    <option value="dual clutch">
+                        Dual Clutch
+                    </option>
+                    <option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Wheel System</label>
+                <select class="form-control" name="wheel_system"
+                    placeholder="Select the wheel system of your car" required>
+                    <option class="placeholder" selected disabled value="">Select the wheel system of your car</option>
+                    <option value="fwd">
+                        Front Wheel Drive (FWD)
+                    </option>
+                    <option value="awd">
+                        All Wheel Drive (AWD)
+                    </option>
+                    <option value="4wd">
+                        Four Wheel Drive (4WD)
+                    </option>
+                    <option value="rwd">
+                        Rear Wheel Drive (RWD)
+                    </option>
+                    <option value="4x2">
+                        4x2
+                    </option>
+                    <option value="unknown">
+                        Unknown
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dealer Region</label>
+                <select class="form-control" name="dealer_region"
+                    placeholder="Select the region where the dealer is located" required>
+                    <option class="placeholder" selected disabled value="">Select the region where the dealer is located</option>
+                    <option value="South">
+                        South
+                    </option>
+                    <option value="Northeast">
+                        Northeast
+                    </option>
+                    <option value="Midwest">
+                        Midwest
+                    </option>
+                    <option value="West">
+                        West
+                    </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Model Name</label>
+                <input class="form-control" type="text" id="modelName" name="model_name"
+                    placeholder="Enter the model name of the car (all letters in lowercase)" onblur="validateInput()" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Back Legroom Size</label>
+                <input class="form-control" type="number" name="back_legroom" step="any"
+                    placeholder="Enter the back legroom size (inches)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Number of Cylinders</label>
+                <input class="form-control" type="number" name="num_of_cylinders"
+                    placeholder="Enter the number of cyliners in your car" min="0" max="12"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Front Legroom Size</label>
+                <input class="form-control" type="number" name="front_legroom" step="any"
+                    placeholder="Enter the front legroom size (inches)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fuel Tank Volume</label>
+                <input class="form-control" type="number" name="fuel_tank_volume" step="any"
+                    placeholder="Enter the fuel tank volume (gallon)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Horepower</label>
+                <input class="form-control" type="number" name="horsepower" step="any"
+                    placeholder="Enter the horsepower of your car" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Maximum Seat Number</label>
+                <input class="form-control" type="number" name="maximum_seating"
+                    placeholder="Enter the maximum number of seats" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Torque</label>
+                <input class="form-control" type="number" name="torque" step="any"
+                    placeholder="Enter the torque (RPM)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Wheelbase</label>
+                <input class="form-control" type="number" name="wheelbase" step="any"
+                    placeholder="Enter the wheelbase (in)" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Listing year</label>
+                <input class="form-control" type="number" name="year"
+                    placeholder="Enter the year when the car was listed for sale" min="2000" max="2025" required/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Volume</label>
+                <input class="form-control" type="number" name="volume" step="any"
+                    placeholder="Enter the volume of the car (length * width * height) in in&#179;" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Combined Fuel Economy</label>
+                <input class="form-control" type="number" name="combined_fuel_economy" step="any"
+                    placeholder="Enter the combined fuel economy (city fuel economy + highway fuel economy)" />
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict the Price" required />
+            </div>
+        </form>
+        <h2>
+        THE  predicted price of your car is {{results}}
+        </h2>
+   <body>
+</html>
