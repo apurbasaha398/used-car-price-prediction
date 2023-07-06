@@ -16,18 +16,22 @@
    ```
 3. Create a new environment in Anaconda
    ```
-    conda create -n <env_name> python=3.7 -y
+    conda create -n <env_name> python=3.8 -y
     ```
 4. Activate the environment
    ```
    conda activate <env_name>`
    ```
-5. Create a requirements.txt file and list all the required libraries in it
-   
-6. Install the required libraries
+5. Install the required libraries
    ```
    pip install -r requirements.txt
-  ```
-7. Make sure the serialized trained model (a pickle file) and all the datasets are in the same folder
+   ```
+7. Make sure the serialized trained model (a pickle file) and all the datasets are in the 'artifact' folder
 
-8. Create a new file named app.py and copy the code from the repository
+8. Run the app.py file
+   ```
+   python app.py
+   ```
+9. If the flask installation was completed successfullt, the web app should be accessible now from localhost
+10. Visit localhost:8080 to launch the webpage
+11. Provide necessary input and get a prediction of your used car
