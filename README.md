@@ -32,6 +32,6 @@
    ```
    python app.py
    ```
-9. If the flask installation was completed successfullt, the web app should be accessible now from localhost
-10. Visit localhost:8080 to launch the webpage
+9. If the flask installation was completed successfully, the web app should be accessible now from localhost
+10. Visit localhost:8080 to view the webpage
 11. Provide necessary input and get a prediction of your used car
