@@ -8,7 +8,7 @@
 4. [Git Bash](https://git-scm.com/downloads)
 5. [Anaconda](https://www.anaconda.com/products/individual)
 
-### Steps to follow:
+### Steps to access the webpage from your local machine:
 1. Create a new repository on Github
 2. Creata a new folder on your local machine and clone the repository
    ``` 
